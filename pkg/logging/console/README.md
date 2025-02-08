@@ -1,6 +1,6 @@
 # Stdout Logging
 
-We will try at least 5 most popular loggers to log data in `JSON` format, the most popular format for logging nowadays.
+We will try at least 5 most popular loggers to log data in `JSON` format to stdout/stderr, the most popular format for logging nowadays.
 - log/slog
 - zap
 - zerolog
@@ -19,7 +19,7 @@ Various logger provide different levels of logging and methods. So we will imple
 - Critical
 
 ### It can enrich logging message with info:
-- file and line of code
+- name of logger
 - timestamp
 - logging level
 - main message

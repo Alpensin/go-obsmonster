@@ -2,24 +2,43 @@ package rest
 
 import (
 	"context"
-	"fmt"
+	"errors"
 	"net/http"
+	"os"
+	"os/signal"
+	"time"
 
 	"github.com/Alpensin/go-obsmonster/api/rest/handlers"
+	"github.com/Alpensin/go-obsmonster/pkg/logging/console"
 )
 
-func Run() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /hello/{name}", handlers.NewHandler(handlers.Hello))
+const (
+	ServerAddres             = ":8080"
+	GracefulShutdownDuration = 10 * time.Second
+)
 
-	ctx, cancel := context.WithCancel(context.Background())
+func Run(logger console.Logger) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /hello/{name}", handlers.NewHandler(logger, handlers.Hello))
+
+	server := &http.Server{
+		Addr:    ":8080",
+		Handler: mux,
+	}
+
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer stop()
+
 	go func() {
-		err := http.ListenAndServe(":8080", mux)
-		if err != nil {
-			fmt.Println(err)
-			cancel()
+		if err := server.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
+			logger.Critical("server serving", console.NewArg("error", err))
 		}
-		cancel()
 	}()
+
 	<-ctx.Done()
+	ctx, cancel := context.WithTimeout(context.Background(), GracefulShutdownDuration)
+	defer cancel()
+	if err := server.Shutdown(ctx); err != nil {
+		logger.Critical("server shutdown", console.NewArg("error", err))
+	}
 }

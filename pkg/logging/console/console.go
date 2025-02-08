@@ -1,4 +1,4 @@
-package stdout
+package console
 
 // Logger - common interface that our libraries must meet.
 // Only JSON formatted message to stdout expected from them
@@ -14,4 +14,12 @@ type Logger interface {
 type Arg struct {
 	Key   string
 	Value any
+}
+
+// NewArg - create NewArg to log data
+func NewArg(key string, value any) Arg {
+	return Arg{
+		Key:   key,
+		Value: value,
+	}
 }
