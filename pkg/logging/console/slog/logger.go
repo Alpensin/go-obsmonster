@@ -36,7 +36,7 @@ func (l *slogLogger) Warn(msg string, args ...console.Arg) {
 	attrs := l.convertArgs(args...)
 	l.logger.LogAttrs(context.Background(), slog.LevelWarn, msg, attrs...)
 }
-func (l *slogLogger) Critical(msg string, args ...console.Arg) {
+func (l *slogLogger) Error(msg string, args ...console.Arg) {
 	attrs := l.convertArgs(args...)
 	l.logger.LogAttrs(context.Background(), slog.LevelError, msg, attrs...)
 }

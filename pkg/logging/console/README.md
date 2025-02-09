@@ -5,7 +5,7 @@ We will try at least 5 most popular loggers to log data in `JSON` format to stdo
 - [zap](https://github.com/uber-go/zap)
 - [zerolog](https://github.com/rs/zerolog)
 - [logrus](https://github.com/sirupsen/logrus)
-- TBD
+- [phuslu/log](https://github.com/phuslu/log)
 
 ### Implementation
 Various logger provide different levels of logging and methods. So we will implement common wrapper for them to swap them easily.
@@ -16,7 +16,7 @@ Various logger provide different levels of logging and methods. So we will imple
 - Info
 - Warning
 - Error
-- Critical
+- Error
 
 ### It can enrich logging message with info:
 - name of logger

@@ -31,7 +31,7 @@ func Run(logger console.Logger) {
 
 	go func() {
 		if err := server.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
-			logger.Critical("server serving", console.NewArg("error", err))
+			logger.Error("server serving", console.NewArg("error", err))
 		}
 	}()
 
@@ -39,6 +39,6 @@ func Run(logger console.Logger) {
 	ctx, cancel := context.WithTimeout(context.Background(), GracefulShutdownDuration)
 	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {
-		logger.Critical("server shutdown", console.NewArg("error", err))
+		logger.Error("server shutdown", console.NewArg("error", err))
 	}
 }

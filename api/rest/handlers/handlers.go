@@ -30,7 +30,7 @@ func NewHandler(logger console.Logger, h APIHandler) http.HandlerFunc {
 				}
 				w.Header().Set("Content-Type", "application/json")
 				w.Write(response)
-				logger.Critical("request",
+				logger.Error("request",
 					console.NewArg("panic", rec),
 					console.NewArg("method", r.Method),
 					console.NewArg("url", r.URL.Path),

@@ -1,6 +1,6 @@
 package console
 
-const LoggerNameField = "logger"
+const LoggerNameField = "🚒 logger"
 
 // Logger - common interface that our libraries must meet.
 // Only JSON formatted message to stdout expected from them
@@ -8,7 +8,7 @@ type Logger interface {
 	Debug(msg string, args ...Arg)
 	Info(msg string, args ...Arg)
 	Warn(msg string, args ...Arg)
-	Critical(msg string, args ...Arg)
+	Error(msg string, args ...Arg)
 }
 
 // Arg - expected values. Different loggers provide own functions to log specific types

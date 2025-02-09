@@ -28,33 +28,33 @@ func New() console.Logger {
 }
 
 func (l *zerologLogger) Debug(msg string, args ...console.Arg) {
-	log := l.logger.Debug()
+	event := l.logger.Debug()
 	for _, arg := range args {
-		log.Any(arg.Key, arg.Value)
+		event.Any(arg.Key, arg.Value)
 	}
-	log.Msg(msg)
+	event.Msg(msg)
 }
 
 func (l *zerologLogger) Info(msg string, args ...console.Arg) {
-	log := l.logger.Info()
+	event := l.logger.Info()
 	for _, arg := range args {
-		log.Any(arg.Key, arg.Value)
+		event.Any(arg.Key, arg.Value)
 	}
-	log.Msg(msg)
+	event.Msg(msg)
 }
 
 func (l *zerologLogger) Warn(msg string, args ...console.Arg) {
-	log := l.logger.Warn()
+	event := l.logger.Warn()
 	for _, arg := range args {
-		log.Any(arg.Key, arg.Value)
+		event.Any(arg.Key, arg.Value)
 	}
-	log.Msg(msg)
+	event.Msg(msg)
 }
 
-func (l *zerologLogger) Critical(msg string, args ...console.Arg) {
-	log := l.logger.Error()
+func (l *zerologLogger) Error(msg string, args ...console.Arg) {
+	event := l.logger.Error()
 	for _, arg := range args {
-		log.Any(arg.Key, arg.Value)
+		event.Any(arg.Key, arg.Value)
 	}
-	log.Msg(msg)
+	event.Msg(msg)
 }

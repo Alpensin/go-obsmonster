@@ -4,6 +4,7 @@ package mux
 import (
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console"
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console/logrus"
+	"github.com/Alpensin/go-obsmonster/pkg/logging/console/phulsulog"
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console/slog"
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console/zap"
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console/zerolog"
@@ -19,6 +20,7 @@ func New() LoggersMux {
 		zap.New(),
 		zerolog.New(),
 		logrus.New(),
+		phulsulog.New(),
 	}
 }
 
@@ -40,8 +42,8 @@ func (mx LoggersMux) Warn(msg string, args ...console.Arg) {
 	}
 }
 
-func (mx LoggersMux) Critical(msg string, args ...console.Arg) {
+func (mx LoggersMux) Error(msg string, args ...console.Arg) {
 	for _, logger := range mx {
-		logger.Critical(msg, args...)
+		logger.Error(msg, args...)
 	}
 }

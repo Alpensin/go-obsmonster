@@ -38,7 +38,7 @@ func (l *logrusLogger) Warn(msg string, args ...console.Arg) {
 	l.logger.WithFields(fields).Warn(msg)
 }
 
-func (l *logrusLogger) Critical(msg string, args ...console.Arg) {
+func (l *logrusLogger) Error(msg string, args ...console.Arg) {
 	fields := l.convertArgs(args...)
 	l.logger.WithFields(fields).Error(msg)
 }

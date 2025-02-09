@@ -34,7 +34,7 @@ func (l *zapLogger) Warn(msg string, args ...console.Arg) {
 	fields := l.convertArgs(args...)
 	l.logger.Warn(msg, fields...)
 }
-func (l *zapLogger) Critical(msg string, args ...console.Arg) {
+func (l *zapLogger) Error(msg string, args ...console.Arg) {
 	fields := l.convertArgs(args...)
 	l.logger.Error(msg, fields...)
 }
