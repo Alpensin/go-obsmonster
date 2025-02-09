@@ -1,10 +1,10 @@
 # Stdout Logging
 
 We will try at least 5 most popular loggers to log data in `JSON` format to stdout/stderr, the most popular format for logging nowadays.
-- log/slog
-- zap
-- zerolog
-- logrus
+- [log/slog](https://pkg.go.dev/log/slog)
+- [zap](https://github.com/uber-go/zap)
+- [zerolog](https://github.com/rs/zerolog)
+- [logrus](https://github.com/sirupsen/logrus)
 - TBD
 
 ### Implementation

@@ -1,5 +1,7 @@
 package console
 
+const LoggerNameField = "logger"
+
 // Logger - common interface that our libraries must meet.
 // Only JSON formatted message to stdout expected from them
 type Logger interface {

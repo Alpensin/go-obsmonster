@@ -66,7 +66,9 @@ The primary goal of `go-obsmonster` is to:
 
 ### Running Examples
 #### TBD
-
+```sh
+go run ./cmd/http/main.go
+```
 ---
 
 ## 🤝 Contributing

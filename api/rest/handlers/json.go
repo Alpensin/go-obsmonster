@@ -7,11 +7,17 @@ import (
 	"net/http"
 )
 
-// Hello - returns hello json message. But if name is Error it return error
+// Hello - returns hello json message.
+// If PathValue name equals Error it returns error
+// If PathValue name equals Panic it panics
 func Hello(w http.ResponseWriter, r *http.Request) error {
 	name := r.PathValue("name")
 	if name == "Error" {
 		return errors.New("You asked to return error")
+	}
+
+	if name == "Panic" {
+		panic("You asked to panic")
 	}
 
 	response, err := json.Marshal(JSONResponse{Message: fmt.Sprintf("Hello, %s", name)})

@@ -6,6 +6,8 @@ import (
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console"
 )
 
+const LoggerName = "zap"
+
 // zapLogger wrapper, that will meet common interface for all loggers.
 // It will translate our messages to format logger expect
 type zapLogger struct {
@@ -14,6 +16,7 @@ type zapLogger struct {
 
 func New() console.Logger {
 	logger, _ := zap.NewProduction()
+	logger = logger.With(zap.String(console.LoggerNameField, LoggerName))
 	return &zapLogger{
 		logger: logger,
 	}

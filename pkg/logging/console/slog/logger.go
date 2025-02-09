@@ -8,6 +8,8 @@ import (
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console"
 )
 
+const LoggerName = "slog"
+
 // slogLogger wrapper, that will meet common interface for all loggers.
 // It will translate our messages to format logger expect
 type slogLogger struct {
@@ -15,7 +17,8 @@ type slogLogger struct {
 }
 
 func New() console.Logger {
-	logger := slog.New(slog.NewJSONHandler(os.Stderr, nil))
+	logger := slog.New(slog.NewJSONHandler(os.Stderr, nil)).
+		With(slog.String(console.LoggerNameField, LoggerName))
 	return &slogLogger{
 		logger: logger,
 	}

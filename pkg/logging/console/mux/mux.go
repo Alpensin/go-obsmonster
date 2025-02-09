@@ -3,8 +3,10 @@ package mux
 
 import (
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console"
+	"github.com/Alpensin/go-obsmonster/pkg/logging/console/logrus"
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console/slog"
 	"github.com/Alpensin/go-obsmonster/pkg/logging/console/zap"
+	"github.com/Alpensin/go-obsmonster/pkg/logging/console/zerolog"
 )
 
 // LoggersMux - multiplexer for all loggers. Helps to log same message to every logger at once
@@ -15,6 +17,8 @@ func New() LoggersMux {
 	return LoggersMux{
 		slog.New(),
 		zap.New(),
+		zerolog.New(),
+		logrus.New(),
 	}
 }
 
